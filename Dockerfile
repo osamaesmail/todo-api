@@ -1,13 +1,11 @@
-FROM golang:1.12 as build-env
+FROM golang:1.12
 
-RUN mkdir /api
-WORKDIR /api
-ADD go.mod go.sum ./
+ADD . /go/src/todo-api
+WORKDIR /go/src/todo-api
 
-RUN go mod download
+RUN go get .
+RUN go build
 
-ADD . .
+EXPOSE 3001
 
-FROM scratch
-COPY --from=build-env /go/bin/api /go/bin/api
-ENTRYPOINT ["/go/bin/api"]
+ENTRYPOINT ["/go/bin/todo-api"]
