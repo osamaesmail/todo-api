@@ -6,6 +6,6 @@ WORKDIR /go/src/todo-api
 RUN go get .
 RUN go build
 
-EXPOSE 3001
+EXPOSE 3000
 
 ENTRYPOINT ["/go/bin/todo-api"]
